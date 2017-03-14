@@ -58,5 +58,59 @@ namespace ImpeCustomers.Properties {
                 return ((string)(this["FacebookClientSecret"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2SDxU9BUtQ7tmQUaIgQG3tl69")]
+        public string TwitterClientId {
+            get {
+                return ((string)(this["TwitterClientId"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D1r3RVY8QOTEiV1Dq7HnNxDxkKZGBfGq2Y6yiR9hhDXdtfN1tj")]
+        public string TwitterSecret {
+            get {
+                return ((string)(this["TwitterSecret"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("fe635da4-9827-48c4-ab74-b933318feee2")]
+        public string MicrosoftClientId {
+            get {
+                return ((string)(this["MicrosoftClientId"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("xAJOLv2mZ9xGxHJjVaTEnNR")]
+        public string MicrosoftSecret {
+            get {
+                return ((string)(this["MicrosoftSecret"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("86mp6l8zz0dekz")]
+        public string LinkedInClientId {
+            get {
+                return ((string)(this["LinkedInClientId"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("g2p8QHMQPaEaf7uB")]
+        public string LinkedInSecret {
+            get {
+                return ((string)(this["LinkedInSecret"]));
+            }
+        }
     }
 }

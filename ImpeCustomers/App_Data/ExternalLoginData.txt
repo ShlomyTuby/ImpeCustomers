@@ -1,0 +1,37 @@
+﻿
+ImpeCustomers
+
+http://localhost:58950
+http://172.0.0.1:58950/
+
+-Google-
+-client id
+1013865157606-ajlfbeo7clmhmjjbgeub9cltd2qsl2pd.apps.googleusercontent.com
+-secret
+ca62-0c6bRWo2YtsYhupeoOx
+
+--Facebook--
+-client id
+122642971599975
+-secret
+765b920fb873d52e07b0ab4a4bf805c9
+
+
+--Twitter--
+-client id
+2SDxU9BUtQ7tmQUaIgQG3tl69
+-secret
+D1r3RVY8QOTEiV1Dq7HnNxDxkKZGBfGq2Y6yiR9hhDXdtfN1tj
+
+
+--Microsoft--
+-client id
+fe635da4-9827-48c4-ab74-b933318feee2
+-secret
+xAJOLv2mZ9xGxHJjVaTEnNR
+
+--LinkedIn--
+-client id
+86mp6l8zz0dekz
+-secret
+g2p8QHMQPaEaf7uB
