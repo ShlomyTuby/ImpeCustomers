@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ImpeCustomers.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GoogleClientId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1013865157606-ajlfbeo7clmhmjjbgeub9cltd2qsl2pd.apps.googleusercontent.com</Value>
+    </Setting>
+    <Setting Name="GoogleClientSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ca62-0c6bRWo2YtsYhupeoOx</Value>
+    </Setting>
+    <Setting Name="FacebookClientId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">122642971599975</Value>
+    </Setting>
+    <Setting Name="FacebookClientSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">765b920fb873d52e07b0ab4a4bf805c9</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -54,15 +54,17 @@ namespace ImpeCustomers
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "122642971599975",
+               appSecret: "765b920fb873d52e07b0ab4a4bf805c9");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+
+            //** TODO: use application setting to restore client key and secret *//
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1013865157606-ajlfbeo7clmhmjjbgeub9cltd2qsl2pd.apps.googleusercontent.com",
+                ClientSecret = "ca62-0c6bRWo2YtsYhupeoOx"
+            });
         }
     }
 }
