@@ -1,36 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ImpeCustomers.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
   <Profiles />
-  <Settings>
-    <Setting Name="GoogleClientId" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">1013865157606-ajlfbeo7clmhmjjbgeub9cltd2qsl2pd.apps.googleusercontent.com</Value>
-    </Setting>
-    <Setting Name="GoogleClientSecret" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">ca62-0c6bRWo2YtsYhupeoOx</Value>
-    </Setting>
-    <Setting Name="FacebookClientId" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">122642971599975</Value>
-    </Setting>
-    <Setting Name="FacebookClientSecret" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">765b920fb873d52e07b0ab4a4bf805c9</Value>
-    </Setting>
-    <Setting Name="TwitterClientId" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">2SDxU9BUtQ7tmQUaIgQG3tl69</Value>
-    </Setting>
-    <Setting Name="TwitterSecret" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">D1r3RVY8QOTEiV1Dq7HnNxDxkKZGBfGq2Y6yiR9hhDXdtfN1tj</Value>
-    </Setting>
-    <Setting Name="MicrosoftClientId" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">fe635da4-9827-48c4-ab74-b933318feee2</Value>
-    </Setting>
-    <Setting Name="MicrosoftSecret" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">xAJOLv2mZ9xGxHJjVaTEnNR</Value>
-    </Setting>
-    <Setting Name="LinkedInClientId" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">86mp6l8zz0dekz</Value>
-    </Setting>
-    <Setting Name="LinkedInSecret" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">g2p8QHMQPaEaf7uB</Value>
-    </Setting>
-  </Settings>
+  <Settings />
 </SettingsFile>

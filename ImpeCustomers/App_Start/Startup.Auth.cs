@@ -9,6 +9,7 @@ using Owin.Security.Providers.LinkedIn;
 using Owin;
 using ImpeCustomers.Models;
 using Microsoft.Owin.Security;
+using System.Configuration;
 
 namespace ImpeCustomers
 {
@@ -53,13 +54,13 @@ namespace ImpeCustomers
 
             // Uncomment the following lines to enable logging in with third party login providers
             app.UseMicrosoftAccountAuthentication(
-                clientId: "fe635da4-9827-48c4-ab74-b933318feee2",
-                clientSecret: "xAJOLv2mZ9xGxHJjVaTEnNR");
+                clientId: ConfigurationManager.AppSettings["MicrosoftClientId"],
+                clientSecret: ConfigurationManager.AppSettings["MicrosoftSecret"]);
 
             app.UseTwitterAuthentication(new TwitterAuthenticationOptions()
             {
-                ConsumerKey = "2SDxU9BUtQ7tmQUaIgQG3tl69",
-                ConsumerSecret = "D1r3RVY8QOTEiV1Dq7HnNxDxkKZGBfGq2Y6yiR9hhDXdtfN1tj",
+                ConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"],
+                ConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"],
                 BackchannelCertificateValidator = new CertificateSubjectKeyIdentifierValidator(new[]
                 {
                     "A5EF0B11CEC04103A34A659048B21CE0572D7D47", // VeriSign Class 3 Secure Server CA - G2
@@ -69,24 +70,24 @@ namespace ImpeCustomers
                     "5168FF90AF0207753CCCD9656462A212B859723B", //DigiCert SHA2 High Assurance Server C‎A 
                     "B13EC36903F8BF4701D498261A0802EF63642BC3" //DigiCert High Assurance EV Root CA
                 })
-
             });
 
             app.UseFacebookAuthentication(
-               appId: "122642971599975",
-               appSecret: "765b920fb873d52e07b0ab4a4bf805c9");
-
-
+               appId: ConfigurationManager.AppSettings["FacebookAppId"],
+               appSecret: ConfigurationManager.AppSettings["FacebookAppSecret"]
+            );
+            
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "1013865157606-ajlfbeo7clmhmjjbgeub9cltd2qsl2pd.apps.googleusercontent.com",
-                ClientSecret = "ca62-0c6bRWo2YtsYhupeoOx"
+                ClientId = ConfigurationManager.AppSettings["GoogleClientId"],
+                ClientSecret = ConfigurationManager.AppSettings["GoogleClientSecret"],
             });
 
             app.UseLinkedInAuthentication(new LinkedInAuthenticationOptions()
             {
-                ClientId = "86mp6l8zz0dekz",
-                ClientSecret = "g2p8QHMQPaEaf7uB"
+                ClientId = ConfigurationManager.AppSettings["LinkedInClientId"],
+                ClientSecret = ConfigurationManager.AppSettings["LinkedInClientSecret"],
+                
             });
 
             
