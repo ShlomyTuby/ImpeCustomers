@@ -48,6 +48,7 @@ namespace ImpeCustomers.Models
 
     public class LoginViewModel
     {
+        
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
@@ -64,21 +65,66 @@ namespace ImpeCustomers.Models
 
     public class RegisterViewModel
     {
+
+        // Contact Info
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+
+        public string FullName
+        {
+            get { return @"{this.FirstName} {this.LastName}"; }
+        }
+
+
+        [Required]
+        [Display(Name = "Job Title")]
+        public string JobTitle { get; set; }
+
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-Mail Address")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        [Phone]
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        //Company Info
+
+        [Required]
+        [Display(Name = "Company")]
+        public string Company { get; set; }
+
+        [Required]
+        [Display(Name = "Street Address")]
+        public string StreetAddress { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "State / Province")]
+        public string State { get; set; }
+
+        [Required]
+        [Display(Name = "Zip Code")]
+        public string ZipCode { get; set; }
+
+        [Required]
+        [Display(Name = "Country")]
+        public string Country { get; set; }
+        
+        [Display(Name = "Comments")]
+        public string Comments { get; set; }
+
     }
 
     public class ResetPasswordViewModel

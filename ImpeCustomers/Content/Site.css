@@ -1,6 +1,4 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +19,104 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+/** My Css Style*/
+
+/** Footer */
+.footer {
+    color: #FFF;
+    background-color: #24234D;
+    position: static;
+
+    padding: 15px;
+    font-size: small;
+}
+
+.main-footer .copyright {
+    margin-right: 20px;
+    color: aliceblue;
+}
+
+
+.main-footer .policies a {
+    text-decoration: underline;
+}
+
+
+.main-footer {
+    display: flex;
+}
+
+
+/** Nav Bar */
+
+/** Nav Bar - Logo */
+.navbar-header .logo {
+    margin-top: 10px;
+}
+
+    /** Nav Bar - Search */
+    .navbar-top .navbar-nav > li > a {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+    .navbar-top .navbar-form {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    .navbar-top .search {
+        background-color: transparent;
+        border-color: transparent;
+        width: 70px;
+    }
+
+    .navbar-top .glyphicon {
+        color: #555555;
+        font-size: large;
+    }
+
+    .navbar-top .glyphicon.active {
+        color: #FFF;
+    }
+
+    .navbar-top .glyphicon:hover {
+        color: #FFF;
+    }
+
+    .navbar-top .search:hover {
+        color: #FFF;
+    }
+
+    .navbar-top .search.active {
+        border-color: #555555;
+        color: #FFF;
+        width: 100%;
+    }
+
+.navbar-top {
+    min-height: 15px;
+}
+
+/** NavBar strong-link */
+
+.navbar-nav .strong-link {
+    animation-name: strong-link;
+    animation-direction: alternate-reverse;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+}
+
+@keyframes strong-link {
+    from {
+    }
+
+    to {
+        color: #FFF;
+    }
 }

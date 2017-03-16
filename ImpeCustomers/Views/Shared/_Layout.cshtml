@@ -4,12 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    
+    <!-- Vendors -->
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/jqueryuistyle")
+
+    <!-- My Files -->
+    @Styles.Render("~/Content/css")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-static-top navbar-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -17,28 +22,50 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+                @Html.Partial("_SearchPartial")
                 @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav">
+                    <li><a href="#" class="strong-link">Under DDoS Attack?</a></li>
+                    <li><a href="#">+1 (866) 250-7659</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="logo">
+                    <img src="~/Images/incapsula-logo.png" />
+                </div>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        
+        
     </div>
+    <footer class="footer">
+        <div class="container-fluid main-footer">
+            <span class="copyright">Copyright &copy;@DateTime.Now.Year Shalom Tuby </span>
+            <span class="policies">
+                <a href="#">Terms Of Use</a> |
+                <a href="#">Privacy Policy</a>
+            </span>
+        </div>
+    </footer>
 
+
+    <!-- Vendors -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryuiscripts")
+
+    <!-- My Files -->
+    @Scripts.Render("~/bundles/app/navbar")
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>

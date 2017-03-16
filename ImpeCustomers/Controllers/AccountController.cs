@@ -152,7 +152,7 @@ namespace ImpeCustomers.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -367,18 +367,34 @@ namespace ImpeCustomers.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
-                if (result.Succeeded)
+                else
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
-                    if (result.Succeeded)
-                    {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                    if (String.IsNullOrEmpty(info.Email)) {
+                        info.Email = model.Email;
                     }
                 }
-                AddErrors(result);
+
+                if (!String.IsNullOrEmpty(info.Email))
+                {
+                    var user = await UserManager.FindByEmailAsync(info.Email);
+                    var result = IdentityResult.Success;
+                    if (user == null)
+                    {
+                        user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                        result = await UserManager.CreateAsync(user);
+                    }
+
+                    if (result.Succeeded)
+                    {
+                        result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                        if (result.Succeeded)
+                        {
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            return RedirectToLocal(returnUrl);
+                        }
+                    }
+                    AddErrors(result);
+                }
             }
 
             ViewBag.ReturnUrl = returnUrl;
