@@ -38,6 +38,10 @@ namespace ImpeCustomers
 
             bundles.Add(new ScriptBundle("~/bundles/app/navbar").Include(
                       "~/Scripts/App/navbar.js"));
+            bundles.Add(new ScriptBundle("~/bundles/app/utilities").Include(
+                      "~/Scripts/App/utilities.js"));
+            bundles.Add(new ScriptBundle("~/bundles/app/googlesearch").Include(
+                      "~/Scripts/App/google-search.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app/register").Include(
                       "~/Scripts/App/register.js"));

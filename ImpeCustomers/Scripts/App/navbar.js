@@ -30,6 +30,7 @@
                 // register for focus in and out toogle class active
                 $('.navbar-top .search').on('focusin', setActive);
                 $('.navbar-top .search').on('focusout', setInActive);
+                $('.navbar-top .search').on('change', showSearchResult);
             };
 
             function setActive() {
@@ -42,6 +43,12 @@
                 var parentForm = $(this).parents('.navbar-form:first');
                 parentForm.find('.search').toggleClass('active', false, 500, "easeOutSine");
                 parentForm.find('.glyphicon').toggleClass('active');
+            }
+
+            function showSearchResult() {
+                var search = $('.navbar-top .search').val();
+                // TODO: show result 
+                window.location.href = '/Shared/SearchResult?q=' + search;
             }
 
             return {

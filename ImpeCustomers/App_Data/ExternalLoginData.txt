@@ -9,6 +9,10 @@ http://172.0.0.1:58950/
 1013865157606-ajlfbeo7clmhmjjbgeub9cltd2qsl2pd.apps.googleusercontent.com
 -secret
 ca62-0c6bRWo2YtsYhupeoOx
+--custome searce API key
+AIzaSyA1XW7v5I1XyIZLguTl2KlzNpuJXvhSG78
+--Custome searce Code
+001185117965843016402:qqxryk65tm4
 
 --Facebook--
 -client id

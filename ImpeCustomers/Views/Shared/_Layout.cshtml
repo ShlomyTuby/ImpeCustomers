@@ -12,6 +12,10 @@
     <!-- My Files -->
     @Styles.Render("~/Content/css")
 
+
+
+    @RenderSection("prescripts", required: false)
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-static-top navbar-top">
@@ -64,6 +68,8 @@
     @Scripts.Render("~/bundles/jqueryuiscripts")
 
     <!-- My Files -->
+    @Scripts.Render("~/bundles/app/utilities")
+    @Scripts.Render("~/bundles/app/googlesearch")
     @Scripts.Render("~/bundles/app/navbar")
     
     @RenderSection("scripts", required: false)
