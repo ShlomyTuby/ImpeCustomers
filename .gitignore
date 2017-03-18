@@ -263,7 +263,7 @@ __pycache__/
 
 
 # Local Config 
-Web.config
+ImpeCustomers/Web.config
 
 # Local_Data (local database)
-App_Data/
+ImpeCustomers/App_Data/
