@@ -27,10 +27,12 @@ textarea {
 .footer {
     color: #FFF;
     background-color: #24234D;
-    position: static;
-
+    position: fixed;
     padding: 15px;
     font-size: small;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 .main-footer .copyright {

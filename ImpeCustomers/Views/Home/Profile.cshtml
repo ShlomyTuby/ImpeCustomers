@@ -6,13 +6,83 @@
 }
 
 
-
-<h2>@Html.ValueFor(m => m.ContactUser.UserName ) Account Profile</h2>
-
-<div>
-
+<div class="row">
+    <h4>@Html.ValueFor(m => m.ContactUser.UserName) Account Profile</h4>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactUser.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.ValueFor(m => m.ContactUser.Email)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactUser.PhoneNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.ValueFor(m => m.ContactUser.PhoneNumber)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactUser.JobTitle, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.ValueFor(m => m.ContactUser.JobTitle)
+        </div>
+    </div>
 </div>
 
+    <div class="row">
+    <h4>Company @Html.ValueFor(m => m.CompanyName)</h4>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.ValueFor(m => m.Country)
+        </div>
+    </div>
+</div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(m => m.State, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.ValueFor(m => m.State)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.ValueFor(m => m.City)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.StreetAddress, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.ValueFor(m => m.StreetAddress)
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.ZipCode, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.ValueFor(m => m.ZipCode)
+        </div>
+    </div>
+</div>
+    <div class="row">
 
-<h2>Company @Html.ValueFor(m => m.CompanyName)</h2>
-
+        <div class="form-group">
+            @Html.LabelFor(m => m.Comments, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.ValueFor(m => m.Comments)
+            </div>
+        </div>
+    </div>
