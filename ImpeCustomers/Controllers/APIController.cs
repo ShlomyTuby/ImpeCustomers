@@ -42,7 +42,7 @@ namespace ImpeCustomers.Controllers
             }
         }
 
-
+        [Authorize]
         [HttpPost]
         public JsonResult Customers()
         {
