@@ -203,6 +203,18 @@
     <Compile Include="Migrations\201703151917417_Initial Database.Designer.cs">
       <DependentUpon>201703151917417_Initial Database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703191003250_addNavigationModel.cs" />
+    <Compile Include="Migrations\201703191003250_addNavigationModel.Designer.cs">
+      <DependentUpon>201703191003250_addNavigationModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703191026373_addNavigationModel1.cs" />
+    <Compile Include="Migrations\201703191026373_addNavigationModel1.Designer.cs">
+      <DependentUpon>201703191026373_addNavigationModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703191028419_addNavigationModel2.cs" />
+    <Compile Include="Migrations\201703191028419_addNavigationModel2.Designer.cs">
+      <DependentUpon>201703191028419_addNavigationModel2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -211,6 +223,7 @@
     <Compile Include="Models\CustomerModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NavigationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -218,6 +231,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Services\ExternalLoginUtilities.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +330,7 @@
     <Content Include="Views\Shared\_SearchPartial.cshtml" />
     <Content Include="Views\Shared\SearchResult.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Shared\_NavigationPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -335,6 +350,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703151917417_Initial Database.resx">
       <DependentUpon>201703151917417_Initial Database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191003250_addNavigationModel.resx">
+      <DependentUpon>201703191003250_addNavigationModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191026373_addNavigationModel1.resx">
+      <DependentUpon>201703191026373_addNavigationModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191028419_addNavigationModel2.resx">
+      <DependentUpon>201703191028419_addNavigationModel2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

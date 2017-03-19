@@ -123,10 +123,41 @@ textarea {
     }
 }
 
+/** Main NavBar */
+.main-navbar .navbar-link a{
+    color: black;
+}
+
+.main-navbar .navbar-link a:hover {
+    background-color: transparent;
+}
+
+.main-navbar .navbar-link .navbar-sub-category {
+    
+}
+
+.main-navbar .navbar-link .navbar-sub-category.close {
+    display: none;
+}
+
+.main-navbar .navbar-sub-category {
+    position: fixed;
+    width: 100%;
+    background-color: gainsboro;
+    padding: 25px;
+}
+
+.main-navbar .navbar-sub-category a { 
+    display: block;
+}
+
+.main-navbar .category-link {
+    font-weight: bold;
+}
+
 
 
 /** Login Page */
-
 .login-submit {
     width: 100%;
 }

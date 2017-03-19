@@ -1,0 +1,25 @@
+﻿@using ImpeCustomers.Services
+
+<ul class="nav navbar-nav navbar-collapse collapse">
+    @foreach (var nav in NavigationService.GetNavigations())
+    {
+
+        <li class="nav-item navbar-link">
+            <a href="#" id="navbar_button_@nav.Id"> @nav.Name </a>
+            <div class="container navbar-sub-category close">
+                    @foreach (var _nav in NavigationService.GetNavigations(nav.Id))
+                    {
+
+                        <div class="col-md-3">
+                            <a href="@_nav.Url" class="category-link"> @_nav.Name </a>
+                            @foreach (var __nav in NavigationService.GetNavigations(_nav.Id))
+                            {
+                                <a href="@__nav.Url" class="page-link"> @__nav.Name </a>
+                            }
+                        </div>
+                    }
+
+            </div>
+        </li>
+    }
+</ul>

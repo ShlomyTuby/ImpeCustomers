@@ -12,6 +12,10 @@
 
             //register for UI changed base client actions
             NavBar.Search.init();
+
+            //register event for navigation close/open menu items
+            NavBar.Navigation.init();
+            
         };
         $(function () { Global.OnPageLoad(); });
 
@@ -54,6 +58,78 @@
             return {
                 //NavBar.Search.init();
                 'init': registerEvents, 
+            }
+        }();
+
+
+        //NavBar.Navigation
+        that.Navigation = function () {
+            function registerEvents() {
+                // register for mouse enter to navbar link => open subcategories
+                $('.main-navbar .navbar-link').on('mouseenter', OnNavbarLinkMouseEnter);
+                // register for mouse leave to navbar link => remove class active (usage to check if close sub category when mouseleave on subcategory area, if its still active its will stay open)
+                $('.main-navbar .navbar-link').on('mouseleave', OnNavbarLinkMouseLeave);
+                // register for mouse leave to navbarSubCategory => if mouse out of the subCategory area (and not in its navbar link area) => close this section
+                $('.main-navbar .navbar-sub-category').on('mouseleave', OnNavbarSubCategoryMouseLeave);
+            };
+
+            function OnNavbarLinkMouseEnter(event) {
+                var linkElement = $(event.target);
+                var navbarSubCategories = linkElement.parent().find('.navbar-sub-category');
+                if (navbarSubCategories) {
+                    CloaseLastOpenSubCategories();
+                    navbarSubCategories.removeClass('close');
+                    navbarSubCategories.addClass('active');
+                    OpenSubCategoryAniamate(navbarSubCategories);
+                }
+            }
+
+            function OpenSubCategoryAniamate(element) {
+                if (element) {
+                    $(element).css( 'margin-left',  "-50px" )
+                        .animate({ 'margin-left': "0px" }, 70, OpenSubCategoryAniamateSubCategoris);
+                }
+            }
+
+            function OpenSubCategoryAniamateSubCategoris(element) {
+                element = $(this);
+                if (element) {
+                    var pageLinks = $(element).find('.page-link');
+
+                    $(pageLinks).css('opacity', "0").css('margin-top', "-20px")
+                        .animate({ "margin-top": "0px", "opacity" : "1" }, 10);
+                }
+            }
+
+            function OnNavbarLinkMouseLeave(event) {
+                var linkElement = $(event.target);
+                var navbarSubCategories = linkElement.parent().find('.navbar-sub-category');
+                if (navbarSubCategories) {
+                    CloaseLastOpenSubCategories();
+                    navbarSubCategories.removeClass('active');
+                }
+            }
+
+            function OnNavbarSubCategoryMouseLeave(event) {
+                var navbarSubCategories = $(event.target);
+                var linkElement = navbarSubCategories.parent().find('.navbar-link');
+                if (navbarSubCategories && linkElement) {
+                    if (!linkElement.hasClass('active')){
+                        linkElement.addClass('close');
+                    }
+                }
+            }
+
+            function CloaseLastOpenSubCategories() {
+                var navbarSubCategories = $('.main-navbar .navbar-sub-category').not('.open');
+                if (navbarSubCategories) {
+                    navbarSubCategories.addClass('close');
+                }
+            }
+
+            return {
+                //NavBar.Navigation.init();
+                'init': registerEvents,
             }
         }();
 
