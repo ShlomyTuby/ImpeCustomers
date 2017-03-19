@@ -86,7 +86,7 @@
 
             function OpenSubCategoryAniamate(element) {
                 if (element) {
-                    $(element).css( 'margin-left',  "-50px" )
+                    $(element).css( 'margin-left',  "-30px" )
                         .animate({ 'margin-left': "0px" }, 70, OpenSubCategoryAniamateSubCategoris);
                 }
             }
@@ -96,8 +96,8 @@
                 if (element) {
                     var pageLinks = $(element).find('.page-link');
 
-                    $(pageLinks).css('opacity', "0").css('margin-top', "-20px")
-                        .animate({ "margin-top": "0px", "opacity" : "1" }, 10);
+                    //$(pageLinks).css('opacity', "0")
+                    //    .animate({ "opacity" : "1" }, 100);
                 }
             }
 

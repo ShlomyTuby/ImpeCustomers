@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ImpeCustomers.Models;
 using System.Collections.Generic;
+using ImpeCustomers.Services;
 
 namespace ImpeCustomers.Controllers
 {
@@ -18,15 +19,18 @@ namespace ImpeCustomers.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IPostService _postService;
 
         public AccountController()
         {
+            _postService = new TwitterService();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _postService = new TwitterService();
         }
 
         public ApplicationSignInManager SignInManager
@@ -202,6 +206,10 @@ namespace ImpeCustomers.Controllers
                         
                         db.SaveChanges();
                     }
+
+                    var message = String.Format("Congratulations,\n We have a new customer {0}.", model.Company);
+
+                    _postService.PostMessage(message);
 
                     //login with new user
 

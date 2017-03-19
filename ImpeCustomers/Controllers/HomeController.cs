@@ -1,4 +1,5 @@
 ﻿using ImpeCustomers.Models;
+using ImpeCustomers.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,6 @@ namespace ImpeCustomers.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            
             return View();
         }
 
@@ -47,6 +47,9 @@ namespace ImpeCustomers.Controllers
             }
 
             return View(customer);
+
+           
         }
+        
     }
 }

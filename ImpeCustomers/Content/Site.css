@@ -160,6 +160,8 @@ textarea {
 /** Login Page */
 .login-submit {
     width: 100%;
+    color: #FFF;
+    font-weight: bold;
 }
 
 #CustomerSupportPortalLoginForm .login-submit {
@@ -168,6 +170,7 @@ textarea {
 
 #PartnerSpherePortalLoginForm .login-submit {
     background-color: #77bc1f;
+    
 }
 
 /** external login logos */
@@ -178,4 +181,5 @@ textarea {
 .external-login-submit-button {
     border: none;
     background-color: transparent;
+   
 }
