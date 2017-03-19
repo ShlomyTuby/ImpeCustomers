@@ -19,7 +19,7 @@ namespace ImpeCustomers.Controllers
             }
             using (ApplicationDbContext db  = new ApplicationDbContext())
             {
-                var result = db.Countries.Where(c => c.Name.ToLower().Contains(term.ToLower())).Select(r => new { name = r.Name, value = r.Name }).ToList();
+                var result = db.Countries.Where(c => c.Name.ToLower().Contains(term.ToLower())).Select(r => new { name = r.Name, value = r.Name }).Take(10).ToList();
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
         }
@@ -37,7 +37,7 @@ namespace ImpeCustomers.Controllers
             }
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                var result = db.Cities.Where(c => c.Name.ToLower().Contains(term.ToLower()) && ( String.IsNullOrEmpty(country) || c.Country.Name.ToLower().Contains(country.ToLower()) )).Select(r => new { name = r.Name, value = r.Name }).ToList();
+                var result = db.Cities.Where(c => c.Name.ToLower().Contains(term.ToLower()) && ( String.IsNullOrEmpty(country) || c.Country.Name.ToLower().Contains(country.ToLower()) )).Select(r => new { name = r.Name, value = r.Name }).Take(10).ToList();
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
         }

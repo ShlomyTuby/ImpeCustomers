@@ -4,60 +4,92 @@
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
 <div class="row">
     <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        <div class="row">
+            <p>Please log in to either the Customer or Partner Portal using the forms below.</p>
+        </div>
+        <div class="row">
+        <div class="col-md-6">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, LoginAttribute = "Customer Support Portal" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "CustomerSupportPortalLoginForm" }))
             {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                    @Html.AntiForgeryToken()
+                    <h3>Customer Support Portal</h3>
+                    <p>
+                        For Imperva customers - contains product documentation, online knowledge base, customer support tools, and the Imperva community.
+                    </p>
+                    <hr />
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="text" name="email" value="" placeholder="Email" class="form-control" />
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="text" name="password" value="" placeholder="Password" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Log in" class="btn btn-default login-submit" />
+                        </div>
+                    </div>
+                    <p>
+                        To create a Customer Support Portal account, click @Html.ActionLink("here", "Register").
+                    </p>
+                    <p>
+                        To reset your Customer Support Portal password, click <a href="#">here</a>.
+                    </p>
+
+                }
+
+        </div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, LoginAttribute = "PartnerSphere Portal" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "PartnerSpherePortalLoginForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <h3>PartnerSphere Portal</h3>
+                <p>
+                    For PartnerSphere channel partners – this site provides deal registration, sales tools, marketing program assets and enablement resources.
+                </p>
+                <hr />
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="text" name="email" value="" placeholder="Email" class="form-control" />
+                    </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                    <div class="col-md-10">
+                        <input type="text" name="password" value="" placeholder="password" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-default login-submit" />
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Register as a new user", "Register")
+                    To create a Customer Support Portal account, click @Html.ActionLink("here", "Register").
                 </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+                <p>
+                    To reset your Customer Support Portal password, click <a href="#">here</a>.
+                </p>
             }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
+        </div>
+</div>
+        <div class="row">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+        </div>
     </div>
+    <div class="col-md-4" id="imperva-ad">
+        <img src="~/Images/AD/ad_ddos-report.png" alt="Imperva AD" />
+    </div>
+
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/app/login")
 }

@@ -17,7 +17,7 @@ namespace ImpeCustomers.Models
             return userIdentity;
         }
 
-        public Customer Customer { get; set; }
+        public string JobTitle { get; set; }
     }
 
     

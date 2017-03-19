@@ -1,0 +1,18 @@
+﻿@model ImpeCustomers.Models.Customer
+@using Microsoft.Owin.Security
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>@Html.ValueFor(m => m.ContactUser.UserName ) Account Profile</h2>
+
+<div>
+
+</div>
+
+
+<h2>Company @Html.ValueFor(m => m.CompanyName)</h2>
+

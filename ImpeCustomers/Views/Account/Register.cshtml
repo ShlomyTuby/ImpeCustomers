@@ -13,7 +13,9 @@
         Authorized Imperva PartnerSphere partners can gain access to exclusive information and resources in the Imperva PartnerSphere portal.
     </p>
     <hr />
-    
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" });
+
     <h4>Contact Information</h4>
     <div class="form-group">
         @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
@@ -23,7 +25,7 @@
         </div>
         
     </div>
-    
+
     <div class="form-group">
         @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -49,6 +51,15 @@
         </div>
     </div>
 
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
     <div class="form-group">
         @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -69,18 +80,10 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.StreetAddress, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.StreetAddress, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.StreetAddress, null, new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.City, null, new { @class = "text-danger" })
+            @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Country, null, new { @class = "text-danger" })
         </div>
     </div>
 
@@ -93,18 +96,27 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.ZipCode, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.ZipCode, null, new { @class = "text-danger" })
+            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.City, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.StreetAddress, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.StreetAddress, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.StreetAddress, null, new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.ZipCode, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Country, null, new { @class = "text-danger" })
+            @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ZipCode, null, new { @class = "text-danger" })
         </div>
     </div>
 

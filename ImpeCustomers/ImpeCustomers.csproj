@@ -217,6 +217,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\ExternalLoginUtilities.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -245,8 +246,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\AD\ad_ddos-report.png" />
+    <Content Include="Images\Icons\facebook-logo.jpeg" />
+    <Content Include="Images\Icons\google-logo.png" />
+    <Content Include="Images\Icons\linkedin-logo.png" />
+    <Content Include="Images\Icons\microsoft-logo.png" />
+    <Content Include="Images\Icons\twitter-logo.jpg" />
     <Content Include="Images\incapsula-logo.png" />
     <Content Include="Scripts\App\google-search.js" />
+    <Content Include="Scripts\App\login.js" />
     <Content Include="Scripts\App\register.js" />
     <Content Include="Scripts\App\utilities.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -307,6 +315,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_SearchPartial.cshtml" />
     <Content Include="Views\Shared\SearchResult.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

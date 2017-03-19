@@ -10,6 +10,8 @@ using Owin;
 using ImpeCustomers.Models;
 using Microsoft.Owin.Security;
 using System.Configuration;
+using Microsoft.Owin.Security.Facebook;
+using System.Security.Claims;
 
 namespace ImpeCustomers
 {
@@ -57,7 +59,8 @@ namespace ImpeCustomers
                 clientId: ConfigurationManager.AppSettings["MicrosoftClientId"],
                 clientSecret: ConfigurationManager.AppSettings["MicrosoftSecret"]);
 
-            app.UseTwitterAuthentication(new TwitterAuthenticationOptions()
+
+            var twitterAuthenticationOptions = new TwitterAuthenticationOptions()
             {
                 ConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"],
                 ConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"],
@@ -70,12 +73,35 @@ namespace ImpeCustomers
                     "5168FF90AF0207753CCCD9656462A212B859723B", //DigiCert SHA2 High Assurance Server C‎A 
                     "B13EC36903F8BF4701D498261A0802EF63642BC3" //DigiCert High Assurance EV Root CA
                 })
-            });
+            };
+            app.UseTwitterAuthentication(twitterAuthenticationOptions);
 
-            app.UseFacebookAuthentication(
-               appId: ConfigurationManager.AppSettings["FacebookAppId"],
-               appSecret: ConfigurationManager.AppSettings["FacebookAppSecret"]
-            );
+
+
+            var facebookAuthenticationOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = ConfigurationManager.AppSettings["FacebookAppId"],
+                AppSecret = ConfigurationManager.AppSettings["FacebookAppSecret"],
+                AuthenticationType = "Facebook",
+                SignInAsAuthenticationType = "ExternalCookie",
+            };
+            facebookAuthenticationOptions.Scope.Add("email");
+
+            facebookAuthenticationOptions.Provider = new FacebookAuthenticationProvider()
+            {
+                OnAuthenticated = async context => 
+                {
+                    context.Identity.AddClaim(new System.Security.Claims.Claim("FacebookAccessToken", context.AccessToken));
+                    foreach (var claim in context.User)
+                    {
+                        var claimType = string.Format("urn:facebook:{0}", claim.Key);
+                        string claimValue = claim.Value.ToString();
+                        if (!context.Identity.HasClaim(claimType, claimValue))
+                            context.Identity.AddClaim(new System.Security.Claims.Claim(claimType, claimValue, "XmlSchemaString", "Facebook"));
+                    }
+                }
+            };
+            app.UseFacebookAuthentication(facebookAuthenticationOptions);
             
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {

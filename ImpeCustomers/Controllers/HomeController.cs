@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ImpeCustomers.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,8 +11,11 @@ namespace ImpeCustomers.Controllers
     
     public class HomeController : Controller
     {
+        
+        [Authorize]
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -26,6 +31,21 @@ namespace ImpeCustomers.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Profile()
+        {
+            ViewBag.Message = "Your profile page.";
+
+            var userId = User.Identity.GetUserId();
+            Customer customer;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                customer = db.Customers.FirstOrDefault( c => c.ContactUser.Id == userId );
+            }
+
+            return View(customer);
         }
     }
 }

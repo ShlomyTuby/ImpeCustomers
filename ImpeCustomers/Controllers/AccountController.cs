@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ImpeCustomers.Models;
+using System.Collections.Generic;
 
 namespace ImpeCustomers.Controllers
 {
@@ -75,7 +76,12 @@ namespace ImpeCustomers.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var user = UserManager.FindByEmail(model.Email);
+            string username = "";
+            if (user != null) {
+                username = user.UserName;
+            }
+            var result = await SignInManager.PasswordSignInAsync(username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -142,28 +148,83 @@ namespace ImpeCustomers.Controllers
             return View();
         }
 
-        //
+        // 
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            
+
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.FullName, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
-                if (result.Succeeded)
+                IdentityResult result = IdentityResult.Success;
+                ApplicationUser user = UserManager.FindByEmail(model.Email);
+                if (user == null)
+                {
+                    var newUser = new ApplicationUser
+                    {
+                        UserName = model.FullName,
+                        Email = model.Email,
+                        PasswordHash = new PasswordHasher().HashPassword(model.Password)
+                    };
+                    result = await UserManager.CreateAsync(newUser);
+                    if (result.Succeeded) {
+                        user = UserManager.FindByEmail(model.Email);
+                    }
+                }
+                if (user != null && result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    var customer = new Customer
+                    {
+                        CompanyName = model.Company,
+                        StreetAddress = model.StreetAddress,
+                        City = model.City,
+                        State = model.State,
+                        ZipCode = model.ZipCode,
+                        Country = model.Country,
+                        Comments = model.Comments,
+                        //ContactUser = user
+                    };
+                    using (ApplicationDbContext db = new ApplicationDbContext())
+                    {
+                        
+                        // Update Customer Properties 
+                        db.Customers.Add(customer);
+
+                        // update user properties
+                        user.PhoneNumber = model.Phone;
+                        user.JobTitle = model.JobTitle;
+                        user.UserName = model.FullName;
+                        
+                        await db.SaveChangesAsync();
+                    }
+                    using (ApplicationDbContext db = new ApplicationDbContext())
+                    {
+                        customer.ContactUser = user;
+                        await db.SaveChangesAsync();
+                    }
+
+                    //login with new user
+
+                    // get external login info;
+                    var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+
+                    if (loginInfo != null) {
+                        await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
+                    }
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Profile", "Home");
                 }
                 AddErrors(result);
             }
@@ -323,27 +384,52 @@ namespace ImpeCustomers.Controllers
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+            ApplicationUser user;
             if (loginInfo == null)
             {
                 return RedirectToAction("Login");
             }
+            
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
             {
+                // if user signin with external login successfuly
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                    if (!string.IsNullOrEmpty(loginInfo.Email))
+                    {
+                        // if exsist account
+                        user = await UserManager.FindByEmailAsync(loginInfo.Email);
+                        if (user != null) {
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            return RedirectToAction("Profile", "Home", new { });
+                        }
+                        
+                    }
+                    // create new account
+                    return View("Register", new RegisterViewModel { Email = loginInfo.Email });
                 case SignInStatus.Failure:
+                    if (!string.IsNullOrEmpty(loginInfo.Email))
+                    {
+                        // if exsist account
+                        user = await UserManager.FindByEmailAsync(loginInfo.Email);
+                        if (user != null)
+                        {
+                            var _result = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
+                            if (_result.Succeeded)
+                            {
+                                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                                return RedirectToAction("Profile", "Home", new { });
+                            }
+                            return View("Register", new RegisterViewModel { Email = loginInfo.Email });
+                        }
+
+                    }
+                    return View("Register", new RegisterViewModel { Email = loginInfo.Email });
                 default:
                     // If the user does not have an account, then prompt the user to create an account
-                    ViewBag.ReturnUrl = returnUrl;
-                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    return View("Register", new RegisterViewModel { Email = loginInfo.Email });
             }
         }
 

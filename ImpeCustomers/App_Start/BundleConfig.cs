@@ -46,6 +46,9 @@ namespace ImpeCustomers
             bundles.Add(new ScriptBundle("~/bundles/app/register").Include(
                       "~/Scripts/App/register.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/app/login").Include(
+                      "~/Scripts/App/login.js"));
+
         }
     }
 }

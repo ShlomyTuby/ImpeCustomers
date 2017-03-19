@@ -120,3 +120,29 @@ textarea {
         color: #FFF;
     }
 }
+
+
+
+/** Login Page */
+
+.login-submit {
+    width: 100%;
+}
+
+#CustomerSupportPortalLoginForm .login-submit {
+    background-color: #1bbcd6;
+}
+
+#PartnerSpherePortalLoginForm .login-submit {
+    background-color: #77bc1f;
+}
+
+/** external login logos */
+.external-logo {
+    height: 25px;
+}
+
+.external-login-submit-button {
+    border: none;
+    background-color: transparent;
+}

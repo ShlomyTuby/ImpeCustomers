@@ -78,9 +78,12 @@ namespace ImpeCustomers.Models
 
         public string FullName
         {
-            get { return @"{this.FirstName} {this.LastName}"; }
+            get { return this.FirstName + " " + this.LastName; }
         }
 
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
 
         [Required]
         [Display(Name = "Job Title")]
