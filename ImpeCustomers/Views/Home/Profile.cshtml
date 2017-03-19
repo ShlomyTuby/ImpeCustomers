@@ -1,4 +1,5 @@
 ﻿@model ImpeCustomers.Models.Customer
+@using ImpeCustomers.Services
 @using Microsoft.Owin.Security
 @{
     ViewBag.Title = "Profile";
@@ -42,6 +43,25 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <h5>Login Providers</h5>
+    @foreach (var _login in ViewBag.Logins)
+    {
+        string imgUrl = ExternalLoginUtilities.GetImgUrlByName(_login);
+        if (!string.IsNullOrEmpty(imgUrl))
+        {
+            <img src="@imgUrl" class="external-logo" alt="@_login" />
+        }
+        else
+        {
+            <span>@_login</span>
+        }
+
+    }
+</div>
+
+
 
 <div class="row">
     <h3>Company Profile</h3>

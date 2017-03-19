@@ -1,6 +1,7 @@
 ﻿using ImpeCustomers.Models;
 using ImpeCustomers.Services;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,9 +11,13 @@ using System.Web.Mvc;
 
 namespace ImpeCustomers.Controllers
 {
-    
     public class HomeController : Controller
     {
+
+        public HomeController()
+        {
+            
+        }
         
         [Authorize]
         public ActionResult Index()
@@ -40,12 +45,17 @@ namespace ImpeCustomers.Controllers
             ViewBag.Message = "Your profile page.";
 
             var userId = User.Identity.GetUserId();
+
+            UserManager<ApplicationUser> userManager;
             Customer customer;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 customer = db.Customers.Where( c => c.ContactUser.Id == userId ).Include(c => c.ContactUser).FirstOrDefault();
+                userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ViewBag.Logins = userManager.GetLogins(userId).Select(l => l.LoginProvider).ToList();
             }
 
+            
             return View(customer);
 
            
