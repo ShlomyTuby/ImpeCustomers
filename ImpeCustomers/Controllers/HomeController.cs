@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -42,7 +43,7 @@ namespace ImpeCustomers.Controllers
             Customer customer;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                customer = db.Customers.FirstOrDefault( c => c.ContactUser.Id == userId );
+                customer = db.Customers.Where( c => c.ContactUser.Id == userId ).Include(c => c.ContactUser).FirstOrDefault();
             }
 
             return View(customer);

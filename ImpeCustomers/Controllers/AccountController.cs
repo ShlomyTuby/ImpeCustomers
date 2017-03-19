@@ -177,34 +177,30 @@ namespace ImpeCustomers.Controllers
                 if (user != null && result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    var customer = new Customer
-                    {
-                        CompanyName = model.Company,
-                        StreetAddress = model.StreetAddress,
-                        City = model.City,
-                        State = model.State,
-                        ZipCode = model.ZipCode,
-                        Country = model.Country,
-                        Comments = model.Comments,
-                        //ContactUser = user
-                    };
+                    
                     using (ApplicationDbContext db = new ApplicationDbContext())
                     {
-                        
+                        var customer = new Customer
+                        {
+                            CompanyName = model.Company,
+                            StreetAddress = model.StreetAddress,
+                            City = model.City,
+                            State = model.State,
+                            ZipCode = model.ZipCode,
+                            Country = model.Country,
+                            Comments = model.Comments,
+                            ContactUserId = user.Id
+                        };
+
                         // Update Customer Properties 
-                        db.Customers.Add(customer);
+                        customer = db.Customers.Add(customer);
 
                         // update user properties
                         user.PhoneNumber = model.Phone;
                         user.JobTitle = model.JobTitle;
                         user.UserName = model.FullName;
                         
-                        await db.SaveChangesAsync();
-                    }
-                    using (ApplicationDbContext db = new ApplicationDbContext())
-                    {
-                        customer.ContactUser = user;
-                        await db.SaveChangesAsync();
+                        db.SaveChanges();
                     }
 
                     //login with new user

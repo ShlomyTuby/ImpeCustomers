@@ -20,7 +20,8 @@ namespace ImpeCustomers.Models
         public string ZipCode { get; set; }
         public string Country { get; set; }
         public string Comments { get; set; }
-        public ApplicationUser ContactUser { get; set; }
+        public string ContactUserId { get; set; }
+        virtual public ApplicationUser ContactUser { get; set; }
         public DateTime TimeCreated { get; set; }
     }
 }
