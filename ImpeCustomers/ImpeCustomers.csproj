@@ -284,6 +284,7 @@
     <Content Include="Images\Icons\microsoft-logo.png" />
     <Content Include="Images\Icons\twitter-logo.jpg" />
     <Content Include="Images\incapsula-logo.png" />
+    <Content Include="Scripts\App\customers-service.js" />
     <Content Include="Scripts\App\google-search.js" />
     <Content Include="Scripts\App\login.js" />
     <Content Include="Scripts\App\register.js" />
@@ -348,6 +349,7 @@
     <Content Include="Views\Shared\SearchResult.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
     <Content Include="Views\Shared\_NavigationPartial.cshtml" />
+    <Content Include="Views\Shared\_CustomersMapPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

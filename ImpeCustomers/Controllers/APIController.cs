@@ -43,7 +43,18 @@ namespace ImpeCustomers.Controllers
         }
 
 
-        
+        [HttpPost]
+        public JsonResult Customers()
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var result = db.Customers.Select(c => new { name = c.CompanyName, address = new { country = c.Country, city = c.City } }).ToList();
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
 
     }
 }

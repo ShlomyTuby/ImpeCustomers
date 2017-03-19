@@ -47,10 +47,15 @@
                 </button>
                 <div class="logo">
                     <a href="/"><img src="~/Images/incapsula-logo.png" /></a>
-                    
                 </div>
             </div>
             @Html.Partial("_NavigationPartial")
+
+            <ul class="nav navbar-nav right">
+                <li>
+                    @Html.ActionLink("Profile", "Profile", "Home", routeValues: null, htmlAttributes: new {  })
+                </li>
+            </ul>
         </div>
     </div>
     <div class="container body-content">

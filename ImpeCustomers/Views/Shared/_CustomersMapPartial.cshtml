@@ -1,0 +1,71 @@
+﻿
+<h3>Our customers on the map</h3>
+
+<div id="map"></div>
+
+    @Scripts.Render("~/bundles/app/customersservice")
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1XW7v5I1XyIZLguTl2KlzNpuJXvhSG78&callback=initMap"></script>
+    <script>
+
+        
+
+        function initMap() {
+            var _customersService = new CustomersService();
+            var _geoService = new GeoService();
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 2,
+                center: new google.maps.LatLng(31.892773, 34.811272), //israel
+                mapTypeId: 'terrain'
+            });
+
+            //only after Jquery loaded
+                _customersService.getCustomers().then(function (data) {
+                    $.map(data, function (item) {
+
+                        var address = item.address.city + ' ' + item.address.country;
+                        var companyName = item.name;
+                        _geoService.addressToCordinate(address).then(function (res) {
+
+                            if (res.results) {
+                                var cord = res.results["0"].geometry.location;
+                                var marker = new google.maps.Marker({
+                                    position: cord,
+                                    map: map
+                                });
+                            }
+
+                        });
+
+                    });
+                });
+
+            
+            
+
+           
+        }
+
+
+        function GeoService() {
+            var base_url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyA1XW7v5I1XyIZLguTl2KlzNpuJXvhSG78";
+
+            function AddressToCordinate(address) {
+                return $.getJSON(base_url + '&address=' + address);
+            }
+
+            return {
+                'addressToCordinate': AddressToCordinate
+            }
+        }
+</script>
+
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+
+
+
